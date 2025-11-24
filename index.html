@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRYONIS | The Sovereign Metabolic Council</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050608;
+            --gold-main: #D4AF37;
+            --gold-light: #F1C766;
+            --gold-dark: #8a7020;
+            --text-white: #EAEAEA;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--gold-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            /* Luxurious Grain Texture */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        /* MAIN POSTER CONTAINER */
+        .invitation-poster {
+            width: 100%;
+            max-width: 850px; /* Wide, cinematic stance */
+            border: 1px solid var(--gold-dark);
+            padding: 90px 70px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(5,6,8,0.95) 0%, rgba(10,12,16,0.98) 100%);
+            box-shadow: 0 40px 90px rgba(0,0,0,0.95);
+            text-align: center;
+        }
+
+        /* INNER GOLD FRAME (Double border for Diplomatic Tier) */
+        .invitation-poster::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            pointer-events: none;
+        }
+
+        .invitation-poster::after {
+            content: '';
+            position: absolute;
+            top: 26px;
+            left: 26px;
+            right: 26px;
+            bottom: 26px;
+            border: 0.5px solid rgba(212, 175, 55, 0.1);
+            pointer-events: none;
+        }
+
+        /* GOLD TEXT EFFECT */
+        .gold-foil {
+            color: var(--gold-main);
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold-main), var(--gold-light), var(--gold-main), var(--gold-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300%;
+            animation: goldShimmer 8s infinite linear;
+        }
+
+        .small-caps {
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+        }
+
+        /* HEADER */
+        header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            padding-bottom: 50px;
+        }
+
+        .company-header {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            color: var(--gold-main);
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+        }
+
+        .reg-line {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            color: rgba(212, 175, 55, 0.5);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+            margin: 45px 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
+
+        /* BODY CONTENT */
+        .content-body {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: rgba(255,255,255,0.85);
+            margin: 0 auto 60px auto;
+            max-width: 85%;
+            text-align: justify;
+            text-align-last: center;
+        }
+
+        .mandatory-quote {
+            display: block;
+            margin: 30px 0;
+            color: var(--gold-light);
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 20px 0;
+            letter-spacing: 0.05em;
+            line-height: 1.6;
+        }
+
+        /* AGENDA SECTION */
+        .agenda-container {
+            margin: 60px auto;
+            width: 85%;
+        }
+
+        .agenda-item {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            padding: 18px 0;
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.15);
+        }
+
+        .agenda-item:last-child {
+            border-bottom: none;
+        }
+
+        .time {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-right: 30px;
+            font-size: 1.1rem;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .event {
+            font-family: var(--font-serif); /* Serif for diplomatic feel */
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: var(--text-white);
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* CONTRIBUTION BLOCK */
+        .contribution-block {
+            margin: 70px 0;
+            padding: 25px 40px;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            display: inline-block;
+            background: rgba(5, 6, 8, 0.8);
+            position: relative;
+        }
+        
+        .contribution-block::before {
+            content: '❖';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-color);
+            padding: 0 10px;
+            color: var(--gold-dark);
+            font-size: 12px;
+        }
+
+        .contribution-text {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        /* LOGISTICS ROW */
+        .logistics-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 70px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-family: var(--font-sans);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            padding-top: 30px;
+        }
+
+        .logistics-item span {
+            display: block;
+            color: var(--gold-dark);
+            margin-bottom: 8px;
+            font-family: var(--font-serif);
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* SIGNATURE */
+        .signature-block {
+            margin-top: 50px;
+        }
+
+        .signer-name {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--gold-main);
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            display: inline-block;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            min-width: 320px;
+        }
+
+        .signer-title {
+            display: block;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        
+        .signer-org {
+             display: block;
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            color: var(--gold-dark);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* ANIMATION */
+        @keyframes goldShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .invitation-poster { padding: 50px 20px; border: none; }
+            .invitation-poster::before, .invitation-poster::after { display: none; }
+            h1 { font-size: 2.2rem; }
+            .content-body { text-align: left; max-width: 100%; }
+            .logistics-row { flex-direction: column; gap: 30px; }
+            .agenda-item { flex-direction: column; text-align: center; }
+            .time { margin-right: 0; margin-bottom: 8px; width: 100%; text-align: center; }
+            .event { text-align: center; }
+            .contribution-text { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-poster">
+        <header>
+            <div class="company-header small-caps">KRYONIS SOVEREIGN SYSTEMS LIMITED (HONG KONG)</div>
+            <div class="reg-line">Office of the Founder • Sovereign Strategy Division</div>
+            
+            <h1 class="gold-foil">The Sovereign<br>Metabolic Council</h1>
+            <div class="subtitle">A Diplomatic Private Dinner on the TEC-X Protocol</div>
+        </header>
+
+        <div class="content-body">
+            <p>
+                We convene a gathering of profound strategic consequence at the intersection of statecraft and next-generation economics. This Private Council brings together a select cadre of sovereign delegates, ministers, and institutional principals to define the parameters of a post-fiat value architecture.
+            </p>
+            
+            <span class="mandatory-quote">
+                “TEC-X represents a next-generation sovereign asset framework that integrates digital value, ecological intelligence, and state-grade economic instruments.”
+            </span>
+
+            <p>
+                Due to the sensitive nature of this emerging financial architecture, participation is strictly limited. This council will shape the early contours of a new global economic standard.
+            </p>
+        </div>
+
+        <div class="agenda-container">
+            <div class="agenda-item">
+                <div class="time">19:30</div>
+                <div class="event">Arrival & Secure Reception</div>
+            </div>
+            <div class="agenda-item">
+                <div class="time">20:00</div>
+                <div class="event">Opening Remarks: The Metabolic Standard</div>
+            </div>
+            <div class="agenda-item">
+                <div class="time">20:30</div>
+                <div class="event">TEC-X & AEGIS-7 Strategic Architecture Briefing</div>
+            </div>
+            <div class="agenda-item">
+                <div class="time">21:15</div>
+                <div class="event">Closed-Door Council Dialogue</div>
+            </div>
+             <div class="agenda-item">
+                <div class="time">22:00</div>
+                <div class="event">Consensus Notes & Forward Allocation</div>
+            </div>
+        </div>
+
+        <div class="contribution-block">
+            <span class="contribution-text">COUNCIL PARTICIPATION CONTRIBUTION: USD 75,000</span>
+        </div>
+
+        <div class="logistics-row">
+            <div class="logistics-item">
+                <span>Date Protocol</span>
+                February 4, 2026
+            </div>
+            <div class="logistics-item">
+                <span>Coordinates</span>
+                Palm Jumeirah (Private Estate)
+            </div>
+            <div class="logistics-item">
+                <span>Access Tier</span>
+                Sovereign (Invitation Only)
+            </div>
+        </div>
+
+        <div class="signature-block">
+            <div class="signer-name">Steven Alber</div>
+            <span class="signer-title">Founder & Chief Architect</span>
+            <span class="signer-org">KRYONIS Sovereign Systems Limited (Hong Kong)</span>
+        </div>
+    </div>
+
+</body>
+</html>
